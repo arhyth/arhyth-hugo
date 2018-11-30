@@ -1,0 +1,63 @@
+baseurl             = "https://arhyth.github.io/"
+builddrafts         = false
+canonifyurls        = true
+contentdir          = "content"
+languageCode        = "en-US"
+layoutdir           = "layouts"
+publishdir          = "public"
+theme               = "cocoa-hugo-theme"
+author              = "David Ebreo"
+title               = "David Ebreo"
+pygmentsuseclasses  = true
+# disqusshortname     = "cocoaexamplesite" # Comment out to disable Disqus.
+pluralizelisttitles = false
+googleAnalytics     = "UA-123-45"
+
+[permalinks]
+blog  = "blog/:slug/"
+
+[[menu.main]]
+name                   = "Blog"
+weight                 = -120
+identifier             = "blog"
+url                    = "/blog/"
+
+[[menu.main]]
+name                   = "About"
+weight                 = -110
+identifier             = "about"
+url                    = "/about/"
+
+[[menu.main]]
+name                   = "Code"
+weight                 = -100
+identifier             = "code"
+url                    = "/code/"
+
+[params]
+include_rss            = true                          # include RSS <link> tag in <head> and show RSS icon
+latestpostscount       = 7                             # how many posts to display on the home page
+i18n_flags             = false                         # whether to display small country flags for available translations
+author                 = "David Ebreo"
+cachebuster            = true                          # add the current unix timestamp in query string for cache busting css assets
+dateform               = "Jan 2, 2006"
+dateformfull           = "Mon Jan 2 2006 15:04:05 MST"
+description            = "Keep calm and read"
+email                  = "arhyth@gmail.com"
+extracssfiles          = [ "/css/override.css" ]       # In your `static` directory, add/remove files as necessary.
+faviconfile            = "img/double_sided_eraser.ico"
+github                 = "//github.com/arhyth"
+instagram              = "//instagram.com/arhyth"
+lang                   = "en"
+linkedin               = "//linkedin.com/in/davidebreo"
+noshowreadtime         = false                         # if true, don't show "<x> minutes read" in posts
+selfintro              = "Weirdly satisfying"          # appears in the site header when set to a non-empty string
+twitter                = "//twitter.com/arhyth"
+
+highlightjs            = true
+highlightjslanguages = ["elixir"]                        # additional languages not included in the "common" set
+highlightjsStyle     = "darcula"
+
+
+avatar                 = "img/profile.jpg" # path to image in static dir e.g img/avatar.png (do not use in the same time as gravatar)
+# gravatar             = ""                # gravatar hash. see https://en.gravatar.com/site/implement/hash/. do not use in the same time as avatar
