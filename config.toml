@@ -51,7 +51,7 @@ instagram              = "//instagram.com/arhyth"
 lang                   = "en"
 linkedin               = "//linkedin.com/in/davidebreo"
 noshowreadtime         = false                         # if true, don't show "<x> minutes read" in posts
-selfintro              = "Weirdly satisfying"          # appears in the site header when set to a non-empty string
+selfintro              = "A traditional engineer in a past life, now working his way to singularity, errrm... software. \nPreferred tech stack is Elixir, Ethereum, and also Go."          # appears in the site header when set to a non-empty string
 twitter                = "//twitter.com/arhyth"
 
 highlightjs            = true
