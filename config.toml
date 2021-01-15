@@ -5,7 +5,7 @@ contentdir          = "content"
 languageCode        = "en-US"
 layoutdir           = "layouts"
 publishdir          = "public"
-theme               = "cocoa-hugo-theme"
+# theme               = "cocoa"
 author              = "David Ebreo"
 title               = "David Ebreo"
 pygmentsuseclasses  = true
@@ -51,7 +51,7 @@ instagram              = "//instagram.com/arhyth"
 lang                   = "en"
 linkedin               = "//linkedin.com/in/davidebreo"
 noshowreadtime         = false                         # if true, don't show "<x> minutes read" in posts
-selfintro              = "Weirdly satisfying"          # appears in the site header when set to a non-empty string
+selfintro              = "A traditional engineer in a past life, now working his way to singularity, errrm... software. \nPreferred tech stack is Elixir, Ethereum, and also Go."          # appears in the site header when set to a non-empty string
 twitter                = "//twitter.com/arhyth"
 
 highlightjs            = true
@@ -61,3 +61,7 @@ highlightjsStyle     = "darcula"
 
 avatar                 = "img/profile.jpg" # path to image in static dir e.g img/avatar.png (do not use in the same time as gravatar)
 # gravatar             = ""                # gravatar hash. see https://en.gravatar.com/site/implement/hash/. do not use in the same time as avatar
+
+[module]
+  [[module.imports]]
+    path = "github.com/arhyth/cocoahut"

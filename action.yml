@@ -1,0 +1,5 @@
+name: 'Deploy arhyth.github.io'
+description: 'Deploy changes and generate SSG page'
+runs:
+        using: 'docker'
+        image: 'Dockerfile'

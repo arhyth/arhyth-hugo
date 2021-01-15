@@ -1,0 +1,27 @@
+on: [push]
+jobs:
+        deploy_arhyth:
+                runs-on: ubuntu-latest
+                name: deploy SSG blog
+                steps:
+                        - uses: actions/checkout@v2
+                        - uses: actions/checkout@v2
+                          with:
+                                  repository: arhyth/arhyth.github.io
+                                  path: built
+                                  persist-credentials: false
+                                  fetch-depth: 0
+                        - name: build pages
+                          uses: ./
+                        - name: commit built
+                          run: |
+                                  cd built
+                                  git config --local user.email "arhyth@gmail.com"
+                                  git config --local user.name "David Ebreo"
+                                  git commit -m 'Test changes via actions' -a
+                        - name: push built
+                          uses: ad-m/github-push-action@master
+                          with:
+                                  repository: arhyth/arhyth.github.io
+                                  github_token: ${{ secrets.BLOG_TOKEN }}
+                                  directory: built
