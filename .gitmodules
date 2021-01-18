@@ -1,7 +1,0 @@
-[submodule "public"]
-	path = public
-	url = https://github.com/arhyth/arhyth.github.io.git
-	branch = master
-[submodule "themes/cocoa"]
-	path = themes/cocoa
-	url = https://github.com/arhyth/cocoa-hugo-theme

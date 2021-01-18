@@ -1,6 +1,7 @@
 on: [push]
 jobs:
         deploy_arhyth:
+                if: contains(github.event.commits[0].message, '[blog]')
                 runs-on: ubuntu-latest
                 name: deploy SSG blog
                 steps:
@@ -18,7 +19,9 @@ jobs:
                                   cd built
                                   git config --local user.email "arhyth@gmail.com"
                                   git config --local user.name "David Ebreo"
-                                  git commit -m 'Test changes via actions' -a
+                                  COMMIT_MESSAGE="${{ github.event.commits[0].message }}"
+                                  COMMIT_MESSAGE="$(echo $COMMIT_MESSAGE | sed 's|\[blog\]\s*||')"
+                                  git commit -m "$COMMIT_MESSAGE" -a
                         - name: push built
                           uses: ad-m/github-push-action@master
                           with:
