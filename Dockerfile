@@ -7,8 +7,8 @@ FROM golang
 
 COPY . /src
 
-RUN wget https://github.com/gohugoio/hugo/releases/download/v0.66.0/hugo_0.66.0_Linux-64bit.deb && \
-    dpkg -i hugo_0.66.0_Linux-64bit.deb && rm hugo_0.66.0_Linux-64bit.deb
+RUN wget http://github.com/gohugoio/hugo/releases/download/v0.80.0/hugo_0.80.0_Linux-64bit.deb && \
+    dpkg -i hugo_0.80.0_Linux-64bit.deb && rm hugo_0.80.0_Linux-64bit.deb
 
 RUN ["chmod", "a+x", "/src/runthis"]
 
