@@ -1,5 +1,5 @@
 ---
-title: "crash looping pod"
+title: "The case of the crash looping pod"
 date: 2021-01-24T19:26:51+08:00
 draft: false
 ---
