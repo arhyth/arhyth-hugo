@@ -1,8 +1,10 @@
 ---
-title: "Using multiple SSH Keys for Github"
+title: "Multiple SSH Keys Github"
 date: 2021-01-15T21:58:02+08:00
 draft: false
 ---
+
+## Using multiple SSH keys for Github
 
 1. Create separate SSH keys and add them to appropriate Github account settings. Make sure they are easily distinguishable from each other.
 
