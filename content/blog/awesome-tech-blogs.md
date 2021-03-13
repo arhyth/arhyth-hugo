@@ -1,5 +1,5 @@
 ---
-title: "Awesome Tech Blogs"
+title: "Awesome tech blogs"
 date: 2021-02-21T22:22:41+08:00
 draft: false
 ---
@@ -9,14 +9,15 @@ draft: false
 Writing down just recent ones from memory for now. This is a growing list.
 
 ## Personal
-- [Dan Luu's blog](https://danluu.com/)
-- [Will Larson's blog](https://lethain.com/)
+- [Dan Luu](https://danluu.com/)
+- [Will Larson](https://lethain.com/)
 - [the morning paper](https://blog.acolyer.org/) by Adrian Colyer. ELI20 for technical papers
 - [StaffEng](https://staffeng.com/) by Will Larson
 - [brandur.org](https://brandur.org/articles) I don't know whose this is but it's great
-- [Nelson Elhage's blog](https://blog.nelhage.com/post/)
-- [Eugene Wei's blog](https://www.eugenewei.com/). for stuff on product/strategy
+- [Nelson Elhage](https://blog.nelhage.com/post/)
+- [Eugene Wei](https://www.eugenewei.com/). for stuff on product/strategy
 - [High Scalability](http://highscalability.com/) by Todd Hoff
+- [Simon Eskildsen](https://sirupsen.com/)
 
 ## Corporate
 - [Dropbox](https://dropbox.tech/)

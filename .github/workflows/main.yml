@@ -21,7 +21,8 @@ jobs:
                                   git config --local user.name "David Ebreo"
                                   COMMIT_MESSAGE="${{ github.event.commits[0].message }}"
                                   COMMIT_MESSAGE="$(echo $COMMIT_MESSAGE | sed 's|\[blog\]\s*||')"
-                                  git commit -m "$COMMIT_MESSAGE" -a
+                                  git add .
+                                  git commit -m "$COMMIT_MESSAGE"
                         - name: push built
                           uses: ad-m/github-push-action@master
                           with:
