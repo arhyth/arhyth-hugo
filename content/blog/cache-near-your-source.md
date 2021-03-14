@@ -17,65 +17,59 @@ Clients of cached components/services do not need to know about caching. They co
 You can make all sorts of optimization between a source and its cache because these details are hidden behind an interface. On the other hand, the farther away (in layers of abstraction) a cache is from its source, the more complexity it eventually (it has to) leaks to the whole system.
 
 ```
-┌──────────────────────────────┐
-│                 Component A  │
-│  ┌──────────┐                │
-│  │          │ ┌──────────┐   │
-│  │  Source  │ │          │   │
-│  │          │ │  Cache   │   │◄────────────────┐
-│  └────────┬─┘ │          │   │                 │
-│           └─► └──────────┘   │                 │
-│          sca                 │                 │
-└──────────────────────────────┘         ┌───────┴─────────┐
-                                         │                 │
-                                         │                 │
-                                         │                 │
-                                         │    System C     │
-                                         │                 │
-                                         │                 │
-┌──────────────────────────────┐         │                 │
-│                 Component B  │         │                 │
-│  ┌──────────┐                │         └────────┬────────┘
-│  │          │ ┌──────────┐   │                  │
-│  │  Source  │ │          │   │                  │
-│  │          │ │  Cache   │   │◄─────────────────┘
-│  └────────┬─┘ │          │   │
-│           └─► └──────────┘   │
-│           scb                │
-└──────────────────────────────┘
+┌──────────────────┐
+│      Component A │
+│  ┌─────────┐     │◄─────────┐
+│  │ Source  │     │          │
+│  └─┬───────┤ sca │          │
+│    ├───────┴─┐   │          │
+│    │  Cache  │   │       ┌──┴──────────┐
+│    └─────────┘   │       │             │
+│                  │       │             │
+└──────────────────┘       │             │
+                           │             │
+                           │  System C   │
+                           │             │
+┌──────────────────┐       │             │
+│      Component B │       │             │
+│  ┌─────────┐     │       │             │
+│  │ Source  │     │       └──┬──────────┘
+│  └─┬───────┤ scb │          │
+│    ├───────┴─┐   │          │
+│    │  Cache  │   │◄─────────┘
+│    └─────────┘   │
+│                  │
+└──────────────────┘
 ```
 
 Consider `System C` above which depends on `Component A` and `Component B`. The two components share the same interface but have different implementations. `System C` is not aware that the two components have their own cache. From `System C` perspective, how the sources interact with their own cache (sca, scb) or even whether the caches exist or not does not matter. 
 
-Let's then say that the service owner of `System C` decided they want to implement their own cache to skip calling the components entirely. By doing that, however, they would be trading off clear separation of concerns for a few 10/100/ms of latency. `System C` would have to provide an API for each of the components to update the cache similar to how the component communicates with its cache internally (sca', scb').
+Let's then say that as service owners of `System C` we decided we would like it to have its own cache to avoid calling the components entirely, whenever possible. By doing that, however, they would be trading off clear separation of concerns for a few 10/100/ms of latency. `System C` would have to provide an API (sca', scb') for each of the components to invalidate/update the cache similar to how the component communicates with its cache internally.
 
 ```
-┌───────────────────┐
-│      Component A  │
-│   ┌──────────┐    │
-│   │          │    │
-│   │  Source  │    │
-│   │          │    │◄────────────────┐
-│   └──────────┘    │                 │
-│                   │                 │
-│                   │                 │
-└───────────┬───────┘    ┌────┬───────┴─────────┐
-            │            │    │                 │
-        sca'└───────────►│ c  │                 │
-                         │ a  │                 │
-                         │ c  │    System C     │
-                         │ h  │                 │
-         scb'            │ e  │                 │
-            ┌───────────►│    │                 │
-            │            │    │                 │
-┌───────────┴───────┐    └────┴────────┬────────┘
-│      Component B  │                  │
-│   ┌──────────┐    │                  │
-│   │          │    │◄─────────────────┘
-│   │  Source  │    │
-│   │          │    │
-│   └──────────┘    │
-│                   │
-│                   │
-└───────────────────┘
+┌──────────────────┐
+│      Component A │
+│  ┌─────────┐     │◄─────────┐
+│  │ Source  │     │          │
+│  └─────────┘     │          │
+│                  │          │
+└──────────┬───────┘   ┌───┬──┴──────────┐
+           │           │ c │             │
+      sca' └──────────►│   │             │
+                       │ a │             │
+                       │   │             │
+      scb' ┌──────────►│ c │  System C   │
+           │           │   │             │
+┌──────────┴───────┐   │ h │             │
+│      Component B │   │   │             │
+│  ┌─────────┐     │   │ e │             │
+│  │ Source  │     │   └───┴──┬──────────┘
+│  └─┬───────┤ scb │          │
+│    ├───────┴─┐   │          │
+│    │  Cache  │   │◄─────────┘
+│    └─────────┘   │
+│                  │
+└──────────────────┘
 ```
+
+Notice that when the cache was colocated with the source, the data flow across components was unidirectional. It would be easy to dismiss this difference as trivial but add in another layer of abstraction between `System C` and the source components and the data flows easily gets hairy.
